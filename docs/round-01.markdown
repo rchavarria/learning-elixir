@@ -230,9 +230,9 @@ a = 2
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
-- utilizar varios cuerpos de una función y recursividad para implementar una función que calcule la suma de `1` hasta `n`
-- implementar la función `gcd(x, y)` (máximo común divisor). matemáticamente: `gcd(x, y)` es `x` si `y` es cero y es `gcd(y, rem(x, y))` en caso contrario
-- crear el juego *Estoy pensando en un número entre el 1 y el 100*: rangos, div(a, b), claúsulas de guarda, pattern matching en rangos: `a..b = 4..8`, funciones privadas
+- round-01-exercise-01.exs: utilizar varios cuerpos de una función y recursividad para implementar una función que calcule la suma de `1` hasta `n`
+- round-01-exercise-02.exs: implementar la función `gcd(x, y)` (máximo común divisor). matemáticamente: `gcd(x, y)` es `x` si `y` es cero y es `gcd(y, rem(x, y))` en caso contrario
+- round-01-exercise-03.exs: crear el juego *Estoy pensando en un número entre el 1 y el 100*: rangos, div(a, b), claúsulas de guarda, pattern matching en rangos: `a..b = 4..8`, funciones privadas
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
