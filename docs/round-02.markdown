@@ -89,7 +89,17 @@ report = %BugReport{owner: %Customer{name: "Dave", company: "Pragmatic"}, detail
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
+- Mirar documentación del módulo `List`, tiene multitud de métodos útiles: `++`, `flatten`, `foldl`, `foldr`, `zip`, `unzip`, `keyfind`, `keydelete`, `keyreplace`,...
+- Mirar documentación del módulo `Dict` (para manipular diccionarios): `values`, `drop`, `put`, `merge`, `get`, `HashDict.new`,...
+- Juguetear, o ver documentación de las macros/funciones para manipular mapas y structs: `get_in`, `update_in`, `get_and_update_in`,...
+
 ## Aprender lo suficiente para hacer algo de utilidad
+
+- exercise-01-round-02.exs: antes se ha implementado (en el libro) la funcción `sum`, que suma los elementos de una lista. Se ha utilizado un acumulador. Implementar lo mismo sin el acumulador
+- exercise-02-round-02.exs: escribir una función `mapsum` que acepte una lista y una función, de forma que aplique la función a cada elemento y sume los resultados
+- exercise-03-round-02.exs: escribir una función `max(list)` que devuelva el máximo valor de la lista
+- exercise-04-round-02.exs: implementar el cifrado César, `caesar(list, n)`, donde `list` es una lista de carácteres (es decir, una cadena con comillas simples `'cadena'`) y que sea circular, cuando sobrepase `z`, que vuelva a la `a`.
+- exercise-05-round-02.exs: escribir una función `span(from, to)` que devuelva una lista de números desde `from` hasta `to`.
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
