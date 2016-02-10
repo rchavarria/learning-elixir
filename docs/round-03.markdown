@@ -117,8 +117,29 @@ Enum.into 1..5, [1000, 10001]
 
 **Comprehensions**
 
-Se le pueden pasar una o más colecciones
+Se le pueden pasar una o más colecciones, entonces extrae todas las combinaciones posibles de los elementos de dichas colecciones, opcionalmente puede filtrar valores, y genera una nueva colección con los valores que pasan el filtro. La sintaxis es `result = for <generator> or <filter>, do: <expression>`. Donde `<generator>` tiene la forma `pattern <- collection` y el filtro es simplemente una condición, por ejemplo `x < 4`.
 
+Las variables declaradas en una comprehension tienen la misma como ámbito, no escapan de él.
+
+```
+for x <- [1,2,3,4,5], x < 4, do: x * x
+  # => [1, 4, 9]
+
+for x <- [1, 2], y <- [5, 6], do: x * y
+  # => las posibles combinaciones serían [1, 5], [1, 6], [2, 5], [2, 6]
+  # => y esas combinaciones serían las iteraciones de la comprehension
+
+# se pueden usar variables de generadores en siguientes generadores
+min_maxes = [ {1, 4}, {2, 3}, {10, 15} ]
+for { min, max } <- min_maxes, n <- min..max, do: n
+  # => [ 1, 2, 3, 4, 2, 3, 10, 11, 12, 13, 14, 15 ]
+
+# por defecto, las comprehensions devuelven una lista. Se puede cambiar con el parámetro `into:`
+for x <- ~w{ cat dog }, into: Map.new, do: { x, String.upcase(x) }
+  # => %{ "cat" => "CAT", "dog" => "DOG" }
+```
+
+Por defecto, las comprehensions devuelven una lista. Se puede cambiar con el parámetro `into:`
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
@@ -127,6 +148,8 @@ Se le pueden pasar una o más colecciones
 - Implementar `flatten`
 
 ## Aprender lo suficiente para hacer algo de utilidad
+
+- exercise-01-round-03.exs: con ayuda de la función `span` escrita anteriormente, escribir una función que devuelva la lista de números primos de `2` hasta `n`
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
