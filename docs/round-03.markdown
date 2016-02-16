@@ -150,6 +150,7 @@ Por defecto, las comprehensions devuelven una lista. Se puede cambiar con el par
 ## Aprender lo suficiente para hacer algo de utilidad
 
 - exercise-01-round-03.exs: con ayuda de la función `span` escrita anteriormente, escribir una función que devuelva la lista de números primos de `2` hasta `n`
+- exercise-02-round-03.exs: a partir de dos listas, una de tasas de impuestos, y otra de compras, calcular el importe total de cada una de las compras
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 

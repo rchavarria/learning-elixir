@@ -101,7 +101,6 @@ report = %BugReport{owner: %Customer{name: "Dave", company: "Pragmatic"}, detail
 - exercise-03-round-02.exs: escribir una función `max(list)` que devuelva el máximo valor de la lista
 - exercise-04-round-02.exs: implementar el cifrado César, `caesar(list, n)`, donde `list` es una lista de carácteres (es decir, una cadena con comillas simples `'cadena'`) y que sea circular, cuando sobrepase `z`, que vuelva a la `a`.
 - exercise-05-round-02.exs: escribir una función `span(from, to)` que devuelva una lista de números desde `from` hasta `to`.
-- exercise-06-round-02.exs: a partir de dos listas, una de tasas de impuestos, y otra de compras, calcular el importe total de cada una de las compras
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
