@@ -2,6 +2,8 @@
 
 ## Aprender lo suficiente para comenzar
 
+Referencia: [Ejercicios y foros sobre el libro](https://forums.pragprog.com/forums/322)
+
 - Las cadenas pueden usar comillas simples o comillas dobles
 - Acepta `heredocs`, con comillas triples
 - **Sigils** (código, señal, símbolo mágico). Comienzan con `~`, seguido de una letra que determina el tipo de símbolo (`c` para una lista de carácteres, `r` para expresión regular, `w` para una lista de palabras separado por espacios,...) y cuyo valor se puede enmarcar en distintos delimitadores: `<..>`, `{...}`, `[...]`,...
@@ -13,11 +15,17 @@ Son una lista de código que representan los caracteres. Y como son una lista, p
 
 Para saber el número entero que representa un carácter, se puede usar la notación `?<chr>`, por ejemplo, `?a` o `?4`, para saber los valores numéricos de `a` y `4` respectivamente.
 
+**Binarios**
+
+
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
 - exercise-01-round-04.exs: escribe una función que devuelva `true` si el parámetro (una lista de carácteres) contiene sólo carácteres imprimibles (del espacio a la tilde)
+- exercise-02-round-04.exs: escribe una función que devuelva `true` en el caso de que dos palabras sean anagramas. `anagram?(word1, word2)`
+- exercise-03-round-04.exs: escribe una funcion que calcule suma, resta,... de una cadena pasada como parámetro: `calculate('123 + 27') # => 150`. Este es especialmente difícil (al menos para mi nivel): devolver tuplas, parsear números (utilizando recursión de una forma muy imaginativa), utilizando pattern matching para construir funciones dependiendo del operador,...
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
