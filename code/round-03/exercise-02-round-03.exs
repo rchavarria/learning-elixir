@@ -17,6 +17,10 @@ defmodule Exercise6 do
       [ id: 130, ship_to: :NC, net_amount: 50.00 ]
     ];
 
+    compute(tax_rates, orders)
+  end
+
+  def compute(tax_rates, orders) do
     for state <- Keyword.keys(tax_rates),
         order <- orders,
         state == Keyword.get(order, :ship_to) do
