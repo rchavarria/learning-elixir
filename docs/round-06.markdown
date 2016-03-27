@@ -20,7 +20,20 @@ Listando los ficheros y directorios que ha creado el comando, encontramos los si
 - `mix.exs`: opciones de configuración del proyecto en sí
 - `/test/`: aquí irá el código de tests
 
+**Transformación: parsear la línea de comandos**
 
+En Elixir existen una serie de convenciones:
+
+- El código que gestiona la línea de comandos va en un módulo llamado `<proyecto>.CLI`, así que nuestro código iría en un módulo llamado `RctIssues.CLI`
+- Cada módulo va en un fichero distinto
+- Cada módulo va dentro del espacio de nombres del proyecto, por lo que todos los módulos colgarán de `RctIssues`
+- Los *espacios de nombres* corresponden con directorios en el árbol del proyecto. Así, el módulo `RctIssues.CLI` se escribiría en el directorio `/lib/rct_issues/cli.ex`. Ver fichero de código fuente [cli.ex]
+
+**Los primeros tests**
+
+Elixir viene con un pequeño framework de testing llamado `ExUnit`.
+
+En el fichero `/test/cli_test.exs` escribiremos los tests para el módulo que acabamos de escribir (echar un vistazo al fichero [cli_test.exs])
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
