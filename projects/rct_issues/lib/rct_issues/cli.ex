@@ -38,9 +38,7 @@ defmodule Issues.CLI do
     System.halt(0)
   end
   def process({ user, project, _count }) do
-    IO.puts """
-    Project #{project} from user #{user} will be fetched
-    """
+    RctIssues.GithubIssues.fetch(user, project)
   end
 
 end    

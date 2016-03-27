@@ -54,9 +54,11 @@ El autor recomienda usar HTTPoison como librería. Esta librería se encuentra e
 
 Con el comando `mix deps` podremos saber el estado de las dependencias del proyecto. Con `mix deps.get` podremos descargar las dependencias que no estén instaladas localmente. En caso de estar instaladas, lo estarán en el directorio `/deps`, como proyectos Elixir, con lo que podremos navegar a través de ellas.
 
+Ahora ya podemos usarla. Lo haremos en un nuevo módulo, escrito en [`/lib/rct_issues/github_issues.ex`]. También modificaremos el método `applications` de `mix.exs` para indicar que la dependencia HTTPoison va a ser ejecutada como una *subaplicación* dentro de nuestro proyecto (hablará más adelante sobre ello en el libro).
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
-- Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio
+- Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio... No solamente le he dado a la documentación si no que he escrito unos tests para aprender cómo funciona [XXX tests de exercise-01-round-06 XXX]
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
