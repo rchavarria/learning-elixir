@@ -37,9 +37,11 @@ En el fichero `/test/cli_test.exs` escribiremos los tests para el módulo que ac
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
+- Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio
+
 ## Aprender lo suficiente para hacer algo de utilidad
 
-- exercise-01-round-06.exs: 
+- exercise-01-round-06: repetir (honestamente) el proceso de crear un nuevo proyecto y crear un módulo que parsee opciones de la línea de comandos y un test para ello
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
