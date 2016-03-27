@@ -35,6 +35,25 @@ Elixir viene con un pequeño framework de testing llamado `ExUnit`.
 
 En el fichero `/test/cli_test.exs` escribiremos los tests para el módulo que acabamos de escribir (echar un vistazo al fichero [cli_test.exs])
 
+**Transformación: obtener datos de GitHub**
+
+Para ello necesitaremos alguna librería. Hay varios lugares donde buscar:
+
+1. Librerías propias de Eixir, en [http://elixir-lang.org/docs]
+2. Librerías propias de Erlang (también distribuidas con Elixir), en [http://erlang.org/docs]
+3. Si todo esto falla, podemos buscar en el repositorio de [Hex], [http://hex.pm], el gestor de dependencias de Elixir
+4. Si aún así, todo falla, siempre nos quedará Google y GitHub
+
+El autor recomienda usar HTTPoison como librería. Esta librería se encuentra en Hex, con lo que es muy fácil incluirla en nuestro proyecto. Simplemente hay que modificar el método `deps` dentro del fichero `/mix.exs`, indicando el nombre y la versión de la librería que queremos usar:
+
+  defp deps do
+    [
+      { :httpoison, "~> 0.4" }
+    }
+  end
+
+Con el comando `mix deps` podremos saber el estado de las dependencias del proyecto. Con `mix deps.get` podremos descargar las dependencias que no estén instaladas localmente. En caso de estar instaladas, lo estarán en el directorio `/deps`, como proyectos Elixir, con lo que podremos navegar a través de ellas.
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio
