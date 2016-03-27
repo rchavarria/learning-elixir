@@ -1,4 +1,4 @@
-# Elixir: primer asalto (tipos, funciones anónimas, módulos)
+# Elixir: segundo asalto (tipos, funciones anónimas, módulos)
 
 ## Aprender lo suficiente para comenzar
 
