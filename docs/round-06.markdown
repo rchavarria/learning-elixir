@@ -56,6 +56,37 @@ Con el comando `mix deps` podremos saber el estado de las dependencias del proye
 
 Ahora ya podemos usarla. Lo haremos en un nuevo módulo, escrito en [`/lib/rct_issues/github_issues.ex`]. También modificaremos el método `applications` de `mix.exs` para indicar que la dependencia HTTPoison va a ser ejecutada como una *subaplicación* dentro de nuestro proyecto (hablará más adelante sobre ello en el libro).
 
+**Transformación: parsear la respuesta JSON**
+
+Se añade la librería `jsx`, de Erlang, como dependencia del proyecto. Añadir la línea `{ :jsx, "~> 2.0" }` al fichero `mix.exs` y ejecutar el comando `mix deps.get` para instalarla localmente.
+
+Modificaremos nuestro módulo que debe parsear la respuesta, `lib/rct_issues/github_issues.ex`:
+
+  def handle_response(%{status_code: 200, body: body}) do
+    { :ok, :jsx.decode(body) }
+  end          
+
+  def handle_response(%{status_code:   _, body: body}) do
+    { :error, :jsx.decode(body) }
+  end          
+
+**Configuración de la aplicación**
+
+Cuando creamos el proyecto con `mix`, éste crea un directorio de configuración, `config/`, con el fichero `config.exs`, donde podremos escribir ciertas configuraciones de nuestro proyecto.
+Cada línea de configuración suele ser un registro de clave valor, por ejemplo, para nuestro proyecto añadiríamos:
+
+  use Mix.Config
+  config :rct_issues, github_url: "https://api.github.com"
+
+Más adelante, podremos usar este valor configurado gracias al módulo `Application`, así
+
+  # crea una variable de clase llamada github_url
+  @github_url Application.get_env(:rct_issues, :github_url)
+
+**Transformación: ordenar los datos**
+
+
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio... No solamente le he dado a la documentación si no que he escrito unos tests para aprender cómo funciona [XXX tests de exercise-01-round-06 XXX]

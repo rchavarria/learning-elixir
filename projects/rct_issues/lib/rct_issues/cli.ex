@@ -39,6 +39,28 @@ defmodule Issues.CLI do
   end
   def process({ user, project, _count }) do
     RctIssues.GithubIssues.fetch(user, project)
+    |> decode_response
   end
 
-end    
+  def decode_reponse({:ok, body}), do: body
+  def decode_reponse({:error, errro}) do
+    {_, message} = List.keyfind(error, "message", 0)
+    IO.puts "Error fetching from GitHub: #{message}"
+    System.halt(2)
+  end
+
+  @doc """
+  (extract from the book)
+  The JSON that GitHub returns for a successful response is a list with one
+  element per GitHub issue. That element is itself a list of key/value tuples.
+  To make these easier (and more efficient) to work with, we’ll convert our
+  list of lists into a list of Elixir hashdicts, which give you fast access by
+  key to a list of key/value pairs
+  """
+  def convert_to_list_of_hashdicts(list) do
+    list
+    |> Enum.map(&Enum.into(&1, HashDict.new))
+  end
+
+end
+
