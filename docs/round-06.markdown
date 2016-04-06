@@ -83,10 +83,6 @@ Más adelante, podremos usar este valor configurado gracias al módulo `Applicat
   # crea una variable de clase llamada github_url
   @github_url Application.get_env(:rct_issues, :github_url)
 
-**Transformación: ordenar los datos**
-
-
-
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio... No solamente le he dado a la documentación si no que he escrito unos tests para aprender cómo funciona [XXX tests de exercise-01-round-06 XXX]
@@ -94,6 +90,7 @@ Más adelante, podremos usar este valor configurado gracias al módulo `Applicat
 ## Aprender lo suficiente para hacer algo de utilidad
 
 - exercise-01-round-06: repetir (honestamente) el proceso de crear un nuevo proyecto y crear un módulo que parsee opciones de la línea de comandos y un test para ello
+- exercise-02-round-06: seguir implementando el ejemplo del libro lo más honestamente que se pueda. Se implementarán las siguientes transformaciones: obtener los datos de GitHub con HTTPoison, parsear el JSON resultante con JSX, extraer sólo la información que nos interesa, ordenarla y recuperar sólo la cantidad que quiere el usuario.
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 

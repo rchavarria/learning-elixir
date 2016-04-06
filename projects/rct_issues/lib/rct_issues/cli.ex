@@ -37,13 +37,16 @@ defmodule Issues.CLI do
     """
     System.halt(0)
   end
-  def process({ user, project, _count }) do
+  def process({ user, project, count }) do
     RctIssues.GithubIssues.fetch(user, project)
     |> decode_response
+    |> convert_to_list_of_hashdicts
+    |> sort_into_ascending_order
+    |> Enum.take(count)
   end
 
-  def decode_reponse({:ok, body}), do: body
-  def decode_reponse({:error, errro}) do
+  def decode_response({:ok, body}), do: body
+  def decode_response({:error, error}) do
     {_, message} = List.keyfind(error, "message", 0)
     IO.puts "Error fetching from GitHub: #{message}"
     System.halt(2)
@@ -61,6 +64,11 @@ defmodule Issues.CLI do
     list
     |> Enum.map(&Enum.into(&1, HashDict.new))
   end
+
+  def sort_into_ascending_order(list_of_issues) do
+    Enum.sort list_of_issues,
+              fn i1, i2 -> i1["created_at"] <= i2["created_at"] end
+  end 
 
 end
 
