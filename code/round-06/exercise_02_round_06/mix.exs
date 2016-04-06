@@ -2,7 +2,7 @@ defmodule Exercise_01Round_06.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :exercise_01_round_06,
+    [app: :exercise_02_round_06,
      version: "0.0.1",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
@@ -14,7 +14,7 @@ defmodule Exercise_01Round_06.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :httpoison]]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +27,8 @@ defmodule Exercise_01Round_06.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      { :httpoison, "~> 0.8.0" }
+    ]
   end
 end

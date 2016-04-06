@@ -7,7 +7,9 @@ defmodule Issues.CLI do
   ]
 
   def run(argv) do
-    parse_args(argv)
+    argv
+    |> parse_args
+    |> process
   end
 
   defp parse_args(argv) do
@@ -19,6 +21,17 @@ defmodule Issues.CLI do
       { _, [ user, project ], _ } -> { user, project, @default_n_issues }
       _ -> :help
     end
+  end
+
+  defp process(:help) do
+    IO.puts """
+    Usage: issues <user> <project> [ count | #{@default_n_issues} ]
+    """
+
+    System.halt(0)
+  end
+  defp process({ user, project, count }) do
+    Issues.GithubIssues.fetch(user, project)
   end
 
 end
