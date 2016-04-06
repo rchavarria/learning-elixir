@@ -4,7 +4,6 @@ defmodule Issues.GitHubIssues do
     "https://api.github.com/repos/#{user}/#{project}/issues"
     |> HTTPoison.get
     |> handle_response
-    |> IO.inspect
   end
 
   defp handle_response({:ok, %{status_code: 200, body: body} }), do: { :ok, :jsx.decode(body) }

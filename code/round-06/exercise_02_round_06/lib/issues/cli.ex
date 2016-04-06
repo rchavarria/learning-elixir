@@ -6,6 +6,11 @@ defmodule Issues.CLI do
     aliases: [ h: :help ]
   ]
 
+  @doc """
+  Can invoke the applications with:
+    mix run -e 'Issues.CLI.run(["rchavarria", "english-by-einar"])'
+    mix run -e 'Issues.CLI.run(["--help"])'
+  """
   def run(argv) do
     argv
     |> parse_args
@@ -31,7 +36,19 @@ defmodule Issues.CLI do
     System.halt(0)
   end
   defp process({ user, project, count }) do
-    Issues.GithubIssues.fetch(user, project)
+    Issues.GitHubIssues.fetch(user, project)
+    |> decode_response
+    |> IO.inspect
+  end
+
+  defp decode_response({ :ok, body }), do: body
+  defp decode_response({ :error, error_body }) do
+    {_, message} = List.keyfind(error_body, "message", 0)
+    IO.puts """
+    GitHub replied with an error: #{message}
+    """
+
+    System.halt(2)
   end
 
 end
