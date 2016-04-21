@@ -1,7 +1,9 @@
 defmodule Issues.GitHubIssues do
 
+  @github_url Application.get_env(:exercise_02_round_06, :github_url)
+
   def fetch(user, project) do
-    "https://api.github.com/repos/#{user}/#{project}/issues"
+    "#{@github_url}/repos/#{user}/#{project}/issues"
     |> HTTPoison.get
     |> handle_response
   end
