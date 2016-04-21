@@ -38,6 +38,7 @@ defmodule Issues.CLI do
   defp process({ user, project, count }) do
     Issues.GitHubIssues.fetch(user, project)
     |> decode_response
+    |> convert_to_list_of_hashdicts
     |> IO.inspect
   end
 
@@ -49,6 +50,11 @@ defmodule Issues.CLI do
     """
 
     System.halt(2)
+  end
+
+  defp convert_to_list_of_hashdicts(list) do
+    list
+    |> Enum.map(&Enum.into(&1, HashDict.new))
   end
 
 end
