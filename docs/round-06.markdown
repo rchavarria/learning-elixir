@@ -86,6 +86,7 @@ Más adelante, podremos usar este valor configurado gracias al módulo `Applicat
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio... No solamente le he dado a la documentación si no que he escrito unos tests para aprender cómo funciona [XXX tests de exercise-01-round-06 XXX]
+- ¿Como se hace para formatear una cadena siempre con la misma anchura? (¿`String.pad` o algo así?). Parece que `String.ljust/3` (http://elixir-lang.org/docs/stable/elixir/String.html#ljust/3) hace el trabajo.
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
