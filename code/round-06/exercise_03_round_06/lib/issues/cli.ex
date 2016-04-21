@@ -15,7 +15,8 @@ defmodule Issues.CLI do
     argv
     |> parse_args
     |> process
-    |> IO.inspect
+    |> print_table
+    # |> IO.inspect
   end
 
   def parse_args(argv) do
@@ -42,7 +43,6 @@ defmodule Issues.CLI do
     |> convert_to_list_of_hashdicts
     |> sort_into_ascending_order
     |> Enum.take(count)
-    |> extract_only_title
   end
 
   defp decode_response({ :ok, body }), do: body
@@ -64,8 +64,15 @@ defmodule Issues.CLI do
     Enum.sort issues, fn i1, i2 -> i1["created_at"] <= i2["created_at"] end
   end
 
-  def extract_only_title(issues) do
-    Enum.map(issues, &(&1["title"]))
+  def print_table(issues) do
+    #         { 4 } {        24           } {                                 80                                          }
+    IO.puts "|  #  |     creation date     |                                 title                                         |"
+    IO.puts "+=====+=======================+===============================================================================+"
+
+    issues
+    |> Enum.each(fn issue -> IO.puts "| #{issue["number"]}   | #{issue["created_at"]}  | #{issue["title"]}" end)
+
+    IO.puts "+=====+=======================+===============================================================================+"
   end
 
 end
