@@ -66,13 +66,23 @@ defmodule Issues.CLI do
 
   def print_table(issues) do
     #         { 4 } {        24           } {                                 80                                          }
-    IO.puts "|  #  |     creation date     |                                 title                                         |"
-    IO.puts "+=====+=======================+===============================================================================+"
+    IO.puts "+=====+======================+===============================================================================+"
+    IO.puts "|  #  |     creation date    |                                 title                                         |"
+    IO.puts "+=====+======================+===============================================================================+"
+    issues |> Enum.each(&print_row/1)
+    IO.puts "+=====+======================+===============================================================================+"
+  end
 
-    issues
-    |> Enum.each(fn issue -> IO.puts "| #{issue["number"]}   | #{issue["created_at"]}  | #{issue["title"]}" end)
+  defp print_row(issue) do
+    number = format(Integer.to_string(issue["number"]), 4)
+    created_at = format(issue["created_at"], 21)
+    title = format(issue["title"], 77)
 
-    IO.puts "+=====+=======================+===============================================================================+"
+    IO.puts "| #{number}| #{created_at}| #{title} |"
+  end
+
+  defp format(value, width) do
+    String.ljust value, width
   end
 
 end
