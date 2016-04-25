@@ -6,6 +6,8 @@ defmodule Issues.CLI do
     aliases: [ h: :help ]
   ]
 
+  def main(argv), do: run(argv)
+
   @doc """
   Can invoke the applications with:
     mix run -e 'Issues.CLI.run(["rchavarria", "english-by-einar"])'
