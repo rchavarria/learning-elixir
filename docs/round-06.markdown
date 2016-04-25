@@ -83,6 +83,16 @@ Más adelante, podremos usar este valor configurado gracias al módulo `Applicat
   # crea una variable de clase llamada github_url
   @github_url Application.get_env(:rct_issues, :github_url)
 
+**Construir un ejecutable**
+
+Para ello es necesario modificar el fichero `mix.exs`, para configurar la herramienta `escript` y poder indicarle el módulo principal de la aplicación que se va a construir, el cual debe de tener un método llamado `main`.
+
+Para construir, simplemente ejecutar el comando:
+
+  mix escript.build
+
+Y tendremos un ejecutable que podremos ejecutar como cualquier otra aplicación de consola d e Unix/Linux
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio... No solamente le he dado a la documentación si no que he escrito unos tests para aprender cómo funciona [XXX tests de exercise-01-round-06 XXX]
