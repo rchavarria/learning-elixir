@@ -93,6 +93,46 @@ Para construir, simplemente ejecutar el comando:
 
 Y tendremos un ejecutable que podremos ejecutar como cualquier otra aplicación de consola d e Unix/Linux
 
+**Comprobando los comentarios**
+
+¿Cómo? ¿Comprobar los comentarios? No te preocupes, Elixir puede ejecutar ciertos comentarios como si fueran tests. En realidad, ejecuta comentarios escritos en cierta forma como si fueran sesiones de la herramienta `iex`. Esto sí que es documentación ejecutable. Simplemente, espectacular.
+
+Un comentario del tipo:
+
+  @doc """   
+  Given a list of rows, where each row contains a keyed list
+  of columns, return a list containing lists of the data in
+  each column. The `headers` parameter contains the
+  list of columns to extract
+  ## Example 
+      iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], HashDict.new),
+      ...>         Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], HashDict.new)]
+      iex> Issues.TableFormatter.split_into_columns(list, [ "a", "b", "c" ])
+      [ ["1", "4"], ["2", "5"], ["3", "6"] ]
+  """        
+  def split_into_columns(rows, headers) do
+  # ...
+
+Creamos un nuevo fichero de tests en `test/doc_test.exs`:
+
+  defmodule DocTest do
+    use ExUnit.Case
+    doctest Issues.TableFormatter
+  end  
+
+Donde `Issues.TableFormatter` es el módulo donde hemos incluido el comentario *ejecutable*. Podemos lanzar los comentarios testeables con los comandos `mix test test/doc_test.exs` o simplemente `mix test`.
+
+Para crear la documentación del proyecto, está la herramienta ExDoc, similar a JavaDoc. Para ello hay que añadirlo como dependencia del proyecto en el fichero `mix.exs`:
+
+  defp deps do
+  [
+  # ...
+    { :ex_doc, github: "elixir-lang/ex_doc" },
+  # ...
+  ]
+  end
+
+Para generarlos, instalar la dependencia con `mix deps.get`, y generar la documentación con `mix docs`.
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 

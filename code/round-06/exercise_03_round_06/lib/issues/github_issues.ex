@@ -4,6 +4,15 @@ defmodule Issues.GitHubIssues do
 
   @github_url Application.get_env(:exercise_03_round_06, :github_url)
 
+  @doc """
+  Este podría ser un comentario testeable
+
+  ## Example
+      iex> Issues.GitHubIssues.some_test
+      "foo bar"
+  """
+  def some_test, do: "foo bar"
+
   def fetch(user, project) do
     Logger.info "Fetching #{user}'s project #{project}"
 
