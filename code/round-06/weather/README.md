@@ -4,3 +4,15 @@ In the United States, the National Oceanic and Atmospheric Administration provid
 
 Write an application that fetches this data, parses it, and displays it in a nice format. (Hint: You might not have to download a library to handle XML parsing.)
 
+# WIP list:
+
+- 
+
+# TODO list:
+
+- Handle response from weather.gov. :error or :ok, returning just the body
+- Transform XML data into some data structure, such as a list of hashdicts
+- Filter those unnecessary fields
+
+# DONE list:
+
