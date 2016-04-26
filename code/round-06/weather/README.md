@@ -6,13 +6,14 @@ Write an application that fetches this data, parses it, and displays it in a nic
 
 # WIP list:
 
-- 
+- Transform XML data into some data structure, such as a list of hashdicts
+  - The XML is got as a binary (string), so it should be doable to parse it without any external library
 
 # TODO list:
 
-- Handle response from weather.gov. :error or :ok, returning just the body
-- Transform XML data into some data structure, such as a list of hashdicts
 - Filter those unnecessary fields
 
 # DONE list:
+
++ Handle response from weather.gov. :error or :ok, returning just the body
 
