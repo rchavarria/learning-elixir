@@ -1,8 +1,12 @@
 defmodule Issues.GitHubIssues do
 
+  require Logger
+
   @github_url Application.get_env(:exercise_03_round_06, :github_url)
 
   def fetch(user, project) do
+    Logger.info "Fetching #{user}'s project #{project}"
+
     "#{@github_url}/repos/#{user}/#{project}/issues"
     |> HTTPoison.get
     |> handle_response

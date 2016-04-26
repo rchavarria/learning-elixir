@@ -93,6 +93,7 @@ Para construir, simplemente ejecutar el comando:
 
 Y tendremos un ejecutable que podremos ejecutar como cualquier otra aplicación de consola d e Unix/Linux
 
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - Necesitarás consular documentación sobre `OptionParser` para ser capaz de hacer el primer ejercicio... No solamente le he dado a la documentación si no que he escrito unos tests para aprender cómo funciona [XXX tests de exercise-01-round-06 XXX]
