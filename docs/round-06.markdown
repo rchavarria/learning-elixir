@@ -143,6 +143,8 @@ Para generarlos, instalar la dependencia con `mix deps.get`, y generar la docume
 
 - exercise-01-round-06: repetir (honestamente) el proceso de crear un nuevo proyecto y crear un módulo que parsee opciones de la línea de comandos y un test para ello
 - exercise-02-round-06: seguir implementando el ejemplo del libro lo más honestamente que se pueda. Se implementarán las siguientes transformaciones: obtener los datos de GitHub con HTTPoison, parsear el JSON resultante con JSX, extraer sólo la información que nos interesa, ordenarla y recuperar sólo la cantidad que quiere el usuario.
+- exercise-03-round-06: implementar el resto de la funcionalidad de la aplicación
+- exercise-04-round-06: escribir una aplicación que pida datos a un organismo de EEUU sobre el tiempo, parsee los datos XML y los muestre de forma agradable
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
