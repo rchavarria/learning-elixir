@@ -7,7 +7,8 @@ Write an application that fetches this data, parses it, and displays it in a nic
 # WIP list:
 
 - Transform XML data into some data structure, such as a list of hashdicts
-  - The XML is got as a binary (string), so it should be doable to parse it without any external library
+  + The XML is got as a binary (string), so it should be doable to parse it without any external library
+  + Create new module
 
 # TODO list:
 

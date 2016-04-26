@@ -10,7 +10,7 @@ defmodule Weather.CLI do
     Logger.info "Running Weather. We'll get KDTO weather conditions"
 
     Weather.Service.fetch("KDTO")
-    |> parse_xml
+    |> Weather.Parser.parse
     |> print
   end
 
