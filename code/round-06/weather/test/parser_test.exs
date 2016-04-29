@@ -17,13 +17,33 @@ defmodule ParserTest do
   end
 
   test "parses the 'temp_c' tag" do
-    temp_c = Weather.Parser.parse_weather(@xml)
-    assert temp_c == "Mostly Cloudy"
+    temp_c = Weather.Parser.parse_temp_c(@xml)
+    assert temp_c == "25.0"
   end
 
   test "parses the 'pressure_mb' tag" do
     pressure_mb = Weather.Parser.parse_pressure_mb(@xml)
     assert pressure_mb  == "1000.4"
+  end
+
+  test "returns a 'station_id' key" do
+    weather_info = Weather.Parser.parse({:ok, @xml})
+    assert weather_info["station_id"] != nil
+  end
+
+  test "returns a 'weather' key" do
+    weather_info = Weather.Parser.parse({:ok, @xml})
+    assert weather_info["weather"] != nil
+  end
+
+  test "returns a 'temperature' key" do
+    weather_info = Weather.Parser.parse({:ok, @xml})
+    assert weather_info["temperature"] != nil
+  end
+
+  test "returns a 'pressure' key" do
+    weather_info = Weather.Parser.parse({:ok, @xml})
+    assert weather_info["pressure"] != nil
   end
 
 end

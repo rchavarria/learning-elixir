@@ -6,10 +6,15 @@ defmodule Weather.Parser do
     Logger.info "XML code got correctly"
     station_id = parse_station_id(xml)
     weather = parse_weather(xml)
-    temp_c = parse_weather(xml)
+    temp_c = parse_temp_c(xml)
     pressure_mb  = parse_pressure_mb(xml)
     
-    xml
+    %{
+      "station_id" => station_id,
+      "weather" => weather,
+      "temperature" => temp_c,
+      "pressure" => pressure_mb
+    }
   end
   def parse({:error, error}) do
     Logger.error "Error passed to parser function"
