@@ -16,4 +16,9 @@ defmodule ParserTest do
     assert weather == "Mostly Cloudy"
   end
 
+  test "parses the 'temp_c' tag" do
+    temp_c = Weather.Parser.parse_weather(@xml)
+    assert temp_c == "Mostly Cloudy"
+  end
+
 end
