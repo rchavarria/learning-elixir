@@ -7,7 +7,7 @@ defmodule Weather.Parser do
     station_id = parse_station_id(xml)
     weather = parse_weather(xml)
     temp_c = parse_weather(xml)
-    # extract pressure_mb
+    pressure_mb  = parse_pressure_mb(xml)
     
     xml
   end
@@ -32,6 +32,12 @@ defmodule Weather.Parser do
     re = ~r/.*<temp_c>(?<temp_c>.*)<\/temp_c>.*/
     captures = Regex.named_captures(re, xml)
     captures["temp_c"]
+  end
+
+  def parse_pressure_mb(xml) do
+    re = ~r/.*<pressure_mb>(?<pressure_mb>.*)<\/pressure_mb>.*/
+    captures = Regex.named_captures(re, xml)
+    captures["pressure_mb"]
   end
 
 end

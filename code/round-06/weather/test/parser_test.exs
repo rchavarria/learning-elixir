@@ -21,4 +21,9 @@ defmodule ParserTest do
     assert temp_c == "Mostly Cloudy"
   end
 
+  test "parses the 'pressure_mb' tag" do
+    pressure_mb = Weather.Parser.parse_pressure_mb(@xml)
+    assert pressure_mb  == "1000.4"
+  end
+
 end
