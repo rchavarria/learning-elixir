@@ -4,25 +4,14 @@ defmodule Weather.CLI do
 
   @doc """
   This is how you run the application:
-    mix run -e 'Weather.CLI.run()'
+    mix run -e 'Weather.CLI.run("KDTO")'
   """
-  def run() do
-    Logger.info "Running Weather. We'll get KDTO weather conditions"
+  def run(airport) do
+    Logger.info "Running Weather. We'll get #{airport} weather conditions"
 
-    Weather.Service.fetch("KDTO")
+    Weather.Service.fetch(airport)
     |> Weather.Parser.parse
     |> Weather.Print.print
-  end
-
-  defp parse_xml({:ok, body}), do: body
-  defp parse_xml({:error, body}) do
-    Logger.error "Error fetching data"
-    System.halt(2)
-  end
-
-  defp print(data) do
-    Logger.info "Printing data:"
-    IO.inspect data
   end
 
 end
