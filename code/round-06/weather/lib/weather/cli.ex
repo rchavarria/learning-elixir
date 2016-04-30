@@ -11,7 +11,7 @@ defmodule Weather.CLI do
 
     Weather.Service.fetch("KDTO")
     |> Weather.Parser.parse
-    |> print
+    |> Weather.Print.print
   end
 
   defp parse_xml({:ok, body}), do: body
