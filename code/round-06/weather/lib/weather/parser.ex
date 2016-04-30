@@ -36,13 +36,13 @@ defmodule Weather.Parser do
   def parse_temp_c(xml) do
     re = ~r/.*<temp_c>(?<temp_c>.*)<\/temp_c>.*/
     captures = Regex.named_captures(re, xml)
-    captures["temp_c"]
+    String.to_float(captures["temp_c"])
   end
 
   def parse_pressure_mb(xml) do
     re = ~r/.*<pressure_mb>(?<pressure_mb>.*)<\/pressure_mb>.*/
     captures = Regex.named_captures(re, xml)
-    captures["pressure_mb"]
+    String.to_float(captures["pressure_mb"])
   end
 
 end

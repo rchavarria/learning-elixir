@@ -6,14 +6,14 @@ Write an application that fetches this data, parses it, and displays it in a nic
 
 # WIP list:
 
-- Transform XML data into some data structure, such as a hashdict
+- Format data structure in a table
 
 # TODO list:
 
-- Format data structure in a table
 - Give the table a nice format
 
 # DONE list:
 
 + Handle response from weather.gov. :error or :ok, returning just the body
++ Transform XML data into some data structure, such as a hashdict
 

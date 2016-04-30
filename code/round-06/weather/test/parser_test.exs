@@ -18,12 +18,12 @@ defmodule ParserTest do
 
   test "parses the 'temp_c' tag" do
     temp_c = Weather.Parser.parse_temp_c(@xml)
-    assert temp_c == "25.0"
+    assert temp_c == 25.0
   end
 
   test "parses the 'pressure_mb' tag" do
     pressure_mb = Weather.Parser.parse_pressure_mb(@xml)
-    assert pressure_mb  == "1000.4"
+    assert pressure_mb  == 1000.4
   end
 
   test "returns a 'station_id' key" do
