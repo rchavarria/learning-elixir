@@ -5,6 +5,9 @@ defmodule Weather.CLI do
   @doc """
   This is how you run the application:
     mix run -e 'Weather.CLI.run("KDTO")'
+    mix run -e 'Weather.CLI.run("KLAX")' -> Los Angeles
+    mix run -e 'Weather.CLI.run("KBOS")' -> Boston
+    mix run -e 'Weather.CLI.run("KIAD")' -> Washingtong Dulles
   """
   def run(airport) do
     Logger.info "Running Weather. We'll get #{airport} weather conditions"
