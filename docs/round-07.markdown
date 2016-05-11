@@ -20,13 +20,13 @@ El receptor, espera mensajes con `receive`. `receive` funciona como `case`: se p
 
 `receive` maneja sólo un mensaje. Si queremos recibir varios, debemos volver a llamar al método que contiene el `receive`, de forma recursiva (y Elixir es muy bueno con la recursividad). `receive` también acepta un parámetro, `after`, para definir un timeout.
 
-**Demasiados procesos**
-
-
+El autor dice que los procesos en Elixir son como los objetos en lenguajes OOP, pero con mejor sentido del humor. El hecho es que son muy livianos, y pueden mantener estado, así que podemos pensar en ellos como en objetos de la OOP.
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 ## Aprender lo suficiente para hacer algo de utilidad
+
+- exercise-01-round-07.exs: ejecutar el programa que pasa mensajes en cadena de un proceso a otro hasta llegar al millón de procesos.
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
