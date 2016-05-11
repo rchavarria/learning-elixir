@@ -22,11 +22,61 @@ El receptor, espera mensajes con `receive`. `receive` funciona como `case`: se p
 
 El autor dice que los procesos en Elixir son como los objetos en lenguajes OOP, pero con mejor sentido del humor. El hecho es que son muy livianos, y pueden mantener estado, así que podemos pensar en ellos como en objetos de la OOP.
 
+**Enlazar procesos**
+
+Normalmente, un proceso no sabe cuando muere un proceso hijo. Debemos hacer algo manualmente para que se notifique. Podemos crear procesos *enlazados* (linked) con `spawn_link`. Por defecto, si un proceso hijo muere, mata al proceso padre. Para controlar esto y poder escuchar el mensaje que lanza el proceso hijo al morir, debemos *atrapar la salida* (trap the exit) mediante `Process.flag(:trap_exit, true)` justo antes de hacer `spawn_link`.
+
+Dos procesos enlazados pueden comunicarse bidireccionalmente.
+
+Elixir usa el framework OTP para construir árboles de procesos. OTP lleva mucho tiempo en funcionamiento, y debemos confiar en que lo hace mucho mejor que nosotros, por lo que lo usaremos prácticamente siempre. OTP incluye el concepto de *Supervisor de procesos*.
+
+**Monitorizando procesos**
+
+Si `spawn_link` permite comunicación bidireccional, `spawn_monitor` solo la permite unidireccional. El proceso hijo puede notificar al padre, pero no al revés.
+
+```
+# monitor devuelve el pid del proceso hijo y una referencia de la monitorización
+res = spawn_monitor(<module>, <function>, <params>)
+IO.inspect res
+# => { #PID{3.3.3.3}, #Reference{1.2.3.4} }
+```
+
+También se puede monitorizar un proceso existente con `Process.monitor`.
+
+¿Cuándo utilizar cada uno? Depende de la utilidad. Si la muerte de un hijo debería matar al padre, usa procesos enlazados. Si la muerte/fallo de un hijo solamente debería notificar al padre, usa monitorización.
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
 - exercise-01-round-07.exs: ejecutar el programa que pasa mensajes en cadena de un proceso a otro hasta llegar al millón de procesos.
+- exercise-02-round-07.exs: escribir un código que cree dos procesos, y que a cada uno le mande un token (p.e.: "pepito" y "fulanito"), y que los procesos lo devuelvan. En teoría, ¿es determinista el orden en el que se reciben las respuestas? ¿Y en la práctica? En caso de queno, ¿cómo podría hacerse que fuera determinista?. Parece que sí es determinista (al menos con dos procesos). Depende del orden en el que se creen los procesos, incluso si invertimos el orden en el que se envían los tokens, el primer proceso creado es el primero en responder.
+- exercise-03-round-07.exs: usa `spawn_link` para crear un proceso, el cual envía un mensaje al padre y finaliza inmediatamente. Mientras, en el padre, después de crear el proceso, espera 500ms y luego comienza a recibir todos los mensajes que están esperando. Tracea todo lo que recibas. ¿Importa que no estuvieras recibiendo notificaciones cuando el hijo terminó? **Resultados**: no recibe ningún mensaje, el hijo termina, terminando al padre durante la espera.
+- exercise-04-round-07.exs: repite el ejercicio anterior, pero en lugar de terminar con `exit`, que el hijo lance una excepción. ¿qué diferencia notas? **Resultados**: No hay mucha difrencia. El padre sigue terminando, sin escuchar ningún mensaje. Al menos, la excepción aparece por consola, mostrándose un error diciendo que el proceso hijo (con su PID) ha lanzado una excepción. En el ejercicio anterior, solamente aparecía que el proceso padre terminaba, nada más.
+
+Usando `Process.flag(:trap_exit, true)`, el proceso padre recibe mensajes:
+
+```
+~/repositories/learning-elixir/code/round-07 • elixir -r exercise-03-round-07.exs -e "Exercise3.run"
+Parent's PID #PID<0.48.0>
+PID's child #PID<0.53.0>
+Received: "Hello!"
+Received: {:EXIT, #PID<0.53.0>, :boom}
+
+~/repositories/learning-elixir/code/round-07 • elixir -r exercise-04-round-07.exs -e "Exercise4.run"
+Parent's PID #PID<0.48.0>
+Child's PID #PID<0.53.0>
+
+22:46:14.313 [error] Process #PID<0.53.0> raised an exception
+** (RuntimeError) Child finished
+    exercise-04-round-07.exs:19: Exercise4.child/1
+Received: "Hello!"
+Received: {:EXIT, #PID<0.53.0>, {%RuntimeError{message: "Child finished"}, [{Exercise4, :child, 1, [file: 'exercise-04-round-07.exs', line: 19]}]}}
+```
+
+Las diferencias están en lo recibido en el mensaje de terminación del hijo. En caso de `exit` se recibe `:EXIT`, un PID, y la causa de la salida. En el caso de la excepción: `:EXIT`, un PID y la excepción, parece, porque tiene pinta de pila de llamadas, con su módulo, función, parámetros,...
+
+- exercise-05-round-07.exs: repetir el ejercicio pero con `spawn_monitor`. **Resultados**: no creo que lo esté haciendo bien. Se supone que monitorizando la comunicación no es bidireccional, pero el padre recibe el mensaje que envía el hijo, así como el mensaje que se envía al terminar o lanzar la excepción. La única diferencia visible es que en lugar de recibir solamente un PID, se recibe un PID y la referencia de monitorización.
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
