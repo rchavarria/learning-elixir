@@ -45,6 +45,10 @@ También se puede monitorizar un proceso existente con `Process.monitor`.
 
 ¿Cuándo utilizar cada uno? Depende de la utilidad. Si la muerte de un hijo debería matar al padre, usa procesos enlazados. Si la muerte/fallo de un hijo solamente debería notificar al padre, usa monitorización.
 
+**Un servidor que calcula series de Fibonacci**
+
+Se va a desarrollar una aplicación que consta de dos módulos: un servidor y un planificador. El servidor, `FibServer`, acepta un número `n`, y devuelve el `n`ésimo número de Fibonnaci. El planificador, `FibScheduler`, se encarga de ir mandando uno a uno los números que quiere el cliente al servidor.
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 ## Aprender lo suficiente para hacer algo de utilidad
@@ -77,6 +81,19 @@ Received: {:EXIT, #PID<0.53.0>, {%RuntimeError{message: "Child finished"}, [{Exe
 Las diferencias están en lo recibido en el mensaje de terminación del hijo. En caso de `exit` se recibe `:EXIT`, un PID, y la causa de la salida. En el caso de la excepción: `:EXIT`, un PID y la excepción, parece, porque tiene pinta de pila de llamadas, con su módulo, función, parámetros,...
 
 - exercise-05-round-07.exs: repetir el ejercicio pero con `spawn_monitor`. **Resultados**: no creo que lo esté haciendo bien. Se supone que monitorizando la comunicación no es bidireccional, pero el padre recibe el mensaje que envía el hijo, así como el mensaje que se envía al terminar o lanzar la excepción. La única diferencia visible es que en lugar de recibir solamente un PID, se recibe un PID y la referencia de monitorización.
+- exercise-06-round-07.exs: escribir una función implementando *pararell map*, que es como una función `map` pero cada elemento es procesado por un proceso distinto. Preguntas: ¿por qué es necesario guardar en la variable `me` el PID del proceso padre? Se debe utilizar `^pid` para recibir los resultados en orden, pero... ¿qué pasa si se utiliza `_pid`? ¿cómo hacer para que falle: esperas, aumentar número elementos, que la función que procesa cada elemento sea más complicada,...? **Resultados** Aumentando el número de elementos afecta al orden en el que se reciben los mensajes. También he conseguido recibir mensajes en orden distinto con el siguiente código:
+
+```
+Parallel.pmap 1..10, fn (i) ->
+  # la espera es más corta según el elemento `i` se va a haciendo mayor
+  wait_up_to = round(10 / i)
+  :timer.sleep(wait_up_to)
+  i
+end
+  #=> [ 7, 8, 9, 10, 5, 6, 3, 4, 2, 1 ]
+```
+
+Volviendo a poner `^pid` el orden vuelve a ser correcto.
 
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
