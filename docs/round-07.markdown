@@ -95,5 +95,7 @@ end
 
 Volviendo a poner `^pid` el orden vuelve a ser correcto.
 
+- exercise-07-round-07.exs: toma como referencia un planificador (servidor de Fibonacci) de un ejercicio del libro y crea otro similar. Esta vez, se deben contar las aparciones de la palabra `cat` en cada fichero que se encuentre en un directorio dado. Cada fichero será procesado por un proceso distinto. ¿Podrías escribir el planificador de una forma más genérica?
+
 ## Enseñar lo aprendido, y repetir desde el paso 7
 
