@@ -45,10 +45,19 @@ Además de poder dar un nombre a un nodo, podemos establecer su *cookie*. La coo
 
 Cada proceso se identifica con un PID. Un PID está compuesto por tres números, aunque sólo contiene dos campos: el número de nodo (0 si el nodo es el local) y el número de proceso en sí. Este número de proceso está compuesto por sus bits más y menos representativos (de ahí que veamos tres números en un PID como éste `#PID<0.71.0>`). El id de node es el id del nodo donde *vive* el proceso.
 
+**Entrada/salida, PIDs y Nodos**
+
+La entrada/salida en la máquina virtual de Erlang se hace a través de servidores de entrada/salida. Elixir y Erlang proporcionan librerías para no tener que lidiar con ellos, ya que son a muy bajo nivel.
+
+En Elixir, se identifica un fichero por el PID del proceso del servidor de entrada/salida que lo está manejando.
+
+Por ejemplo, la función `IO.puts` utiliza el PID devuelto por `:erlang.group_leader()` como valor por defecto para enviar una cadena al proceso que la muestra por consola: `send :erlang.group_leader(), str` podría ser el código equivalente.
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - exercise-01-round-08: en el código del servidor de ticks ([ticker.ex](../code/round-08/ticker.ex)), el autor habla de que el tick se envía cada 2sg más o menos. Pero el timeout está puesto a 2sg exactos. ¿Por qué habla de *más o menos*? **Respuesta** El timeout es de justo 2sg, pero el timeout solo saltará si no se registra ningún cliente en esos 2sg. Si un cliente se registra (digamos en el momento 1.55sg) no saltará el timeout hasta los 3.55sg siguientes (1.55sg que pasaron desde el anterior tick hasta el registro del último cliente más 2sg del timeout normal).
 - exercise-02-round-08: modificar el servidor de ticks para que mande solo un tick cada vez, de forma circular, a cada uno de los clientes registrados (el primer tick al primer cliente, el segundo tick al segundo cliente registrado,...). El programa deberá lidiar con nuevos clientes registrados.
+- exercise-03-round-08: reimplementar el servidor de ticks, pero esta vez debe ser circular, de forma que el cliente 1 mande un tick al cliente 2. Pasados 2sg, el cliente 2 mandará un tick al 3. Y así hasta el último, el cual enviará un tick al 1. Y vuelta a empezar. El problema está en cómo añadir clientes al círculo (o *ring*) y quién tiene la responsabilidad de actualizar ese círculo de clientes. **Respuesta** me está costando dar con la solución al ejercicio. Puede que el *ring* lo tenga que gestionar el servidor central. De otra forma, los clientes perderán el timeout del `receive` y se volverán un poco locos. 
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
