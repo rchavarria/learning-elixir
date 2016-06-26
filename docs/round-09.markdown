@@ -49,6 +49,10 @@ iex> GenServer.call(pid, :next_number)
 
 En ocasiones no necesitamos que el servidor retorne un resultado. En estos casos, para llamar al servidor emplearemos `GenServer.cast`, y para manejar esas peticiones, nuestro servidor debe implementar el callback `handle_cast`.
 
+#### Callbacks de GenServer
+
+GenServer es un protocolo de OTP. OTP asume que este protocolo define 6 callbacks. Elixir proporciona una implementación por defecto para cada uno de ellos en GenServer, por eso no tenemos que implementarlos nosotros. Los 6 callbacks son: `init(start_arguments)`, `handle_call(request, from, state)`, `handle_cast(request, state)`, `handle_info(info, state)`, `terminate(reason, state)`, `code_change(from_version, state, extra)` y `format_status(reason, [ pdict, state ])`.
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - exercise-01-round-09: crear un server que implemente una pila. Se inicializará con unos cuantos valores en la pila. Cada petición *pop* devolverá un elemento de la pila. Cuando la pila esté vacía, fallará. Implementado en `code/round-09/stack`.
