@@ -24,7 +24,7 @@ defmodule Sequence.Server do
   # one of the callbacks provided by GenServer is handle_call. it has 3
   # parameters: action, request origin PID, current server state
   # it has to reply with a tuple with 3 parameters as well: response,
-  # XXX and the state to use in the next request
+  # value returned and the state to use in the next request
   def handle_call(:next_number, _from, current_number) do
     { :reply, current_number, current_number + 1 }
   end
@@ -45,9 +45,14 @@ iex> GenServer.call(pid, :next_number)
 
 ```
 
+#### Servidores que no tienen que devolver un resultado
+
+En ocasiones no necesitamos que el servidor retorne un resultado. En estos casos, para llamar al servidor emplearemos `GenServer.cast`, y para manejar esas peticiones, nuestro servidor debe implementar el callback `handle_cast`.
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
-- exercise-01-round-09.ex: crear un server que implemente una pila. Se inicializará con unos cuantos valores en la pila. Cada petición *pop* devolverá un elemento de la pila. Cuando la pila esté vacía, fallará.
+- exercise-01-round-09: crear un server que implemente una pila. Se inicializará con unos cuantos valores en la pila. Cada petición *pop* devolverá un elemento de la pila. Cuando la pila esté vacía, fallará. Implementado en `code/round-09/stack`.
+- exercise-02-round-09: ampliar el servidor anterior, de forma que se puedan añadir elementos a la pila con la operación `:push` a través de peticiones *cast*. Implementado en `code/round-09/stack2`
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
