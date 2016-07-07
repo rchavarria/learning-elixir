@@ -26,6 +26,12 @@ defmodule Sequence do
 end
 ```
 
+#### Gestionando el estado del servidor entre reinicios
+
+Como se puede comprobar al jugar con el supervisor y el servidor creados en el ejercio 01, el servidor es reiniciado, pero no mantiene el estado anterior al fallo, si no que siempre se reinicia con el estado inicial, indicado a la hora de crear el supervisor. Esto se puede mejorar
+
+La forma de mantener el estado es almacenándolo fuera del proceso servidor. Esto se hace mediante un nuevo *worker*, un nuevo servidor, al que se le llama *stash*. Nuestro servidor almacenará su estado actual en ese *stash worker*.
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - exercise-01-round-10: añade un supervisor a la aplicación anterior sobre una pila de enteros **Resultado** Increíble, increíble que sea tan fácil. Lo primero, el supervisor arranca él solito y levanta el servidor él solito también. Super cómodo. Luego, captura los errores y levanta de nuevo el servidor sin que nosotros tengamos que hacer nada más. Para hacer fallar a la pila, se podía hacer con un `Stack.Server.push -1`. El supervisor captuar el fallo, y rearranca el servidor.
