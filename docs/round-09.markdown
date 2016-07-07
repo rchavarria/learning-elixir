@@ -53,10 +53,26 @@ En ocasiones no necesitamos que el servidor retorne un resultado. En estos casos
 
 GenServer es un protocolo de OTP. OTP asume que este protocolo define 6 callbacks. Elixir proporciona una implementación por defecto para cada uno de ellos en GenServer, por eso no tenemos que implementarlos nosotros. Los 6 callbacks son: `init(start_arguments)`, `handle_call(request, from, state)`, `handle_cast(request, state)`, `handle_info(info, state)`, `terminate(reason, state)`, `code_change(from_version, state, extra)` y `format_status(reason, [ pdict, state ])`.
 
+#### Nombrado de procesos
+
+En lugar de usar el PID para referenciar a procesos de nuestro servidor, podemos hacerlo a través de nombres. Para ello, se debe utilizar la opción `name:` a la hora de crear el servidor:
+
+```
+iex> { :ok, pid } = GenServer.start_link(Sequence.Server, 100, name: :seq)
+iex> GenServer.call(:seq, :next_number)
+100
+iex> GenServer.call(:seq, :next_number)
+101
+iex> GenServer.call(:seq, :next_number)
+102
+iex> :sys.get_status :seq
+```
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - exercise-01-round-09: crear un server que implemente una pila. Se inicializará con unos cuantos valores en la pila. Cada petición *pop* devolverá un elemento de la pila. Cuando la pila esté vacía, fallará. Implementado en `code/round-09/stack`.
 - exercise-02-round-09: ampliar el servidor anterior, de forma que se puedan añadir elementos a la pila con la operación `:push` a través de peticiones *cast*. Implementado en `code/round-09/stack2`
+- exercise-03-round-09: dar un nombre al servidor anterior, de forma que se le pueda llamar sin necesidad de saber el PID. También, crear un API en la pila de forma que los clientes no tengan que llamar a `GenServer` para usarla. Simplemente serán unas funciones que envolverán las llamadas a `GenServer`.
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
