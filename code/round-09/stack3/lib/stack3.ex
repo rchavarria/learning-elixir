@@ -24,13 +24,32 @@ defmodule Stack.Server do
   def pop(), do: GenServer.call(__MODULE__, :pop)
   def push(new_item), do: GenServer.cast(__MODULE__, { :push, new_item })
 
+  # Callbacks
+
+  def handle_call(:pop, _from, []) do
+    # server will terminate when the stack is empty
+    { :stop, :empty_stack, [] }
+  end
   def handle_call(:pop, _from, current_stack) do
     [ first | remaining_stack ] = current_stack
     { :reply, first, remaining_stack }
   end
 
+  def handle_cast({ :push, new_element }, _) when new_element < 0 do
+    # server will exit abruptly when client pushes a number below 0
+    System.halt(2)
+  end
+  def handle_cast({ :push, new_element }, _) when new_element > 100 do
+    # server will terminate when client pushes a number greater than 100
+    raise "New element can't be greater than 100"
+  end
   def handle_cast({ :push, new_element }, current_stack) do
     { :noreply, [ new_element | current_stack ] }
+  end
+
+  def terminate(reason, current_stack) do
+    IO.puts "Server will terminate soon, reason: #{inspect reason}"
+    IO.puts "Current stack state: #{inspect current_stack}"
   end
 
 end

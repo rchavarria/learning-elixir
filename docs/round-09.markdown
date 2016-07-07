@@ -73,6 +73,7 @@ iex> :sys.get_status :seq
 - exercise-01-round-09: crear un server que implemente una pila. Se inicializará con unos cuantos valores en la pila. Cada petición *pop* devolverá un elemento de la pila. Cuando la pila esté vacía, fallará. Implementado en `code/round-09/stack`.
 - exercise-02-round-09: ampliar el servidor anterior, de forma que se puedan añadir elementos a la pila con la operación `:push` a través de peticiones *cast*. Implementado en `code/round-09/stack2`
 - exercise-03-round-09: dar un nombre al servidor anterior, de forma que se le pueda llamar sin necesidad de saber el PID. También, crear un API en la pila de forma que los clientes no tengan que llamar a `GenServer` para usarla. Simplemente serán unas funciones que envolverán las llamadas a `GenServer`.
+- exercise-04-round-09: implementar el callback `GenServer.terminate/2` para comprobar distintas formas de terminar el servidor: un callback lanza una excepción, se llama a `Kernel.exit/1`, se detecta que un proceso ha tenido un error,... **Resultado** No he obtenido nada en claro. Tendría que profundizar en la documentación the [`GenServer.terminate/2`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:terminate/2), que parece bastante espesa por cierto. Pero no está garantizado que se llame a `terminate`, con lo que no sé si estoy provocando correctamente los errores
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
