@@ -45,7 +45,7 @@ La aplicación funcionaría de la siguiente forma:
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
-- exercise-01-round-10: añade un supervisor a la aplicación anterior sobre una pila de enteros **Resultado** Increíble, increíble que sea tan fácil. Lo primero, el supervisor arranca él solito y levanta el servidor él solito también. Super cómodo. Luego, captura los errores y levanta de nuevo el servidor sin que nosotros tengamos que hacer nada más. Para hacer fallar a la pila, se podía hacer con un `Stack.Server.push -1`. El supervisor captuar el fallo, y rearranca el servidor.
+- exercise-01-round-10: añade un supervisor a la aplicación anterior sobre una pila de enteros **Resultado** Increíble, increíble que sea tan fácil. Lo primero, el supervisor arranca él solito y levanta el servidor él solito también. Super cómodo. Luego, captura los errores y levanta de nuevo el servidor sin que nosotros tengamos que hacer nada más. Para hacer fallar a la pila, se podía hacer con un `Stack.Server.push -1`. El supervisor captura el fallo, y rearranca el servidor.
 - exercise-02-round-10: vuelve a crear una aplicación similar a la anterior, pero creando un árbol de supervisores, y un stash worker, de forma que cuando el worker principal falle, el estado sea guardado. Comprueba que el sistema mantiene el estado cuando el worker principal falla
 
 ## Aprender lo suficiente para hacer algo de utilidad
