@@ -69,7 +69,7 @@ defmodule Sequence do
 
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
-- exercise-01-round-11: 
+- exercise-01-round-11: convierte tu servidor `Stack` en una aplicación OTP
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
