@@ -44,6 +44,29 @@ end
 
 Ahora podemos ejecutar el comando `mix compile` para generar el fichero `.app`. Este fichero se almacena en la ruta nada intuitiva de `_build/dev/lib/sequence/ebin`. Este fichero define una tupla Erlang que define la aplicación. `mix` ha añadido automáticamente los módulos de los que consta la aplicación y las aplicaciones de las que depende, por ejemplo `kernel`, `stdlib` o `elixir`.
 
+A la hora de pasar parámetros de inicialización a las aplicaciones existe otra posibilidad. La opción `env`, que acepta una lista de palabras clave (*keyword list*)
+
+```
+def application do
+  [
+    mod: { Sequence, [] },
+    env: [ initial_number: 12334 ],
+    registered: [...]
+  ]
+end
+```
+
+Para después recuperar ese valor con `Application.get_env`:
+
+```
+defmodule Sequence do
+  use Application
+  def start(_type, _args) do
+    initial_number = Application.get_env(:sequence, :initial_number)
+    #...
+```
+
+
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - exercise-01-round-11: 
