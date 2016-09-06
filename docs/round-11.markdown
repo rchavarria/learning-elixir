@@ -66,10 +66,14 @@ defmodule Sequence do
     #...
 ```
 
-
 ## Experimentar, jugar, buscar puntos desconocidos, hacerse preguntas
 
 - exercise-01-round-11: convierte tu servidor `Stack` en una aplicación OTP
+- exercise-02-round-11: hasta ahora no hemos testeado para nada ninguna aplicación. Mira a ver qué puedes hacer. Testear un server no parece algo muy sencillo, que se pueda ejecutar a la primera, porque el server debería estar ejecutándose para pode *funcionar*. Pero Elixir está muy enfocado a los tests automáticos, así que algo debe de existir.
+
+Referencias:
+
+- [Cómo se testea un `GenServer`](http://elixir-lang.org/getting-started/mix-otp/genserver.html#testing-a-genserver), de la documentación oficial: básicamente, en el *set up* de los tests, se levanta el server. Luego, se puede llamar a la API del servidor tranquilamente. Al parecer, si el proyecto está configurado como una aplicación, `mix` arranca la aplicación, por lo que no hace falta levantar el server en el *set up*. Lo malo, que no se puede inicializar con ningún valor de test.
 
 ## Aprender lo suficiente para hacer algo de utilidad
 
