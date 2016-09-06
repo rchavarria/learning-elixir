@@ -2,20 +2,26 @@ defmodule Stack.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :stack,
-     version: "0.1.0",
-     elixir: "~> 1.3",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :stack,
+      version: "0.1.0",
+      elixir: "~> 1.3",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
-     mod: {Stack, []}]
+    [
+      applications: [ :logger ],
+      mod: { Stack, [] },
+      env: [ initial_stack: [ 1, 2, 3, 4, 5, 6 ] ],
+      registered: [ :stack ]
+    ]
   end
 
   # Dependencies can be Hex packages:
