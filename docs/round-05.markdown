@@ -1,4 +1,4 @@
-# Elixir: cuarto asalto (Binarios, Cadenas)
+# Elixir: control de flujo (condicionales,...)
 
 ## Aprender lo suficiente para comenzar
 
