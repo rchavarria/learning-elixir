@@ -1,4 +1,4 @@
-# Elixir: sexto asalto (mix, ExUnit, DocTests)
+# Elixir: séptimo asalto (mix, ExUnit, DocTests)
 
 ## Aprender lo suficiente para comenzar
 
