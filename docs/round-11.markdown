@@ -1,4 +1,4 @@
-# Elixir: décimo asalto (supervisores OTP)
+# Elixir: undécimo asalto (aplicaciones OTP)
 
 ## Aprender lo suficiente para comenzar
 
